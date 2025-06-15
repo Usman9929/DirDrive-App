@@ -12,7 +12,7 @@ const CustomerLoginScreen = ({ navigation }) => {
 
   const handleSignup = () => {
     // Navigate to signup screen
-    navigation.navigate('Signup');
+    navigation.navigate('SignUp');
   };
 
   return (

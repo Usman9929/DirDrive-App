@@ -33,7 +33,7 @@ const SignupScreen = ({ navigation }) => {
 
   return (
     <ImageBackground
-      source={require('../assets/images/signup-background.jpg')}
+      source={require('../../assets/images/customer-background-image.jpg')}
       style={styles.background}
     >
       <ScrollView contentContainerStyle={styles.scrollContainer}>
