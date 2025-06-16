@@ -1,18 +1,32 @@
-import React ,{useState}from 'react';
-import { View, Text, TextInput, StyleSheet, Pressable, ImageBackground } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, TextInput, StyleSheet, Pressable, ImageBackground, Alert } from 'react-native';
+import axios from 'axios';
 
-const BikerLoginScreen = () => {
+const API_URL = 'http://192.168.43.98:3000/bikers'; // Replace localhost with local IP for device
+
+const BikerLoginScreen = ({ navigation }) => {
   const [cnic, setCnic] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleLogin = () => {
-    // Handle login logic here
-    console.log('Login attempted with CNIC:', cnic);
+  const handleLogin = async () => {
+    try {
+      const response = await axios.get(`${API_URL}?cnic=${cnic}&password=${password}`);
+      
+      if (response.data.length > 0) {
+        // Login successful
+        navigation.navigate('BikerDashboard'); // Replace with your dashboard screen
+      } else {
+        Alert.alert('Login Failed', 'CNIC or Password is incorrect');
+      }
+    } catch (error) {
+      Alert.alert('Error', 'Unable to connect to the server');
+      console.error(error);
+    }
   };
 
   return (
     <ImageBackground
-      source={require('../../assets/images/background-image.jpg')} 
+      source={require('../../assets/images/background-image.jpg')}
       style={styles.background}
     >
       <View style={styles.container}>
@@ -48,7 +62,7 @@ const BikerLoginScreen = () => {
         </Pressable>
 
         <Text style={styles.footerText}>
-          Only approved bikers can log in. Don't have an account? 
+          Only approved bikers can log in. Don't have an account?
           <Text style={styles.linkText}> Apply to become a rider.</Text>
         </Text>
       </View>

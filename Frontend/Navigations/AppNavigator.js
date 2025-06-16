@@ -5,6 +5,8 @@ import WelcomeScreen from '../Screens/WelcomeScreen';
 import BikeLoginrScreen from '../Screens/Biker_Screens/BikerLoginScreen';
 import CustomerLoginScreen from '../Screens/Customer_Screens/CustomerLoginScreen';
 import SignupScreen from '../Screens/Customer_Screens/SignupScreen';
+import CustomerDashboard from '../Screens/Customer_Screens/Dashboard';
+import BikerDashboard from '../Screens/Biker_Screens/Dashboard';
 
 // ✅ Define the Stack
 const Stack = createStackNavigator();
@@ -18,6 +20,8 @@ const AppNavigation = () => {
         <Stack.Screen name="Customer" component={CustomerLoginScreen} />
         <Stack.Screen name="SignUp" component={SignupScreen} />
         <Stack.Screen name="Login" component={CustomerLoginScreen} />
+        <Stack.Screen name="CustomerDashboard" component={CustomerDashboard} />
+        <Stack.Screen name="BikerDashboard" component={BikerDashboard} />
       </Stack.Navigator>
     </NavigationContainer>
   );

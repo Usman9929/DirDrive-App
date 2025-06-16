@@ -107,5 +107,17 @@
       "phone": "03189793078",
       "createAt": "2025-06-16T19:25:48.333Z"
     }
+  ],
+  "bikers": [
+    {
+      "id": 1,
+      "cnic": "12345-6789012-3",
+      "password": "bikerpass"
+    },
+    {
+      "id": 2,
+      "cnic": "98765-4321098-7",
+      "password": "securepass"
+    }
   ]
 }

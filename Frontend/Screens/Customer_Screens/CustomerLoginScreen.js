@@ -1,17 +1,29 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, StyleSheet, Pressable, ImageBackground, TouchableOpacity } from 'react-native';
+import { View, Text, TextInput, StyleSheet, Pressable, ImageBackground, TouchableOpacity, Alert } from 'react-native';
+import axios from 'axios';
+
+const API_URL = 'http://192.168.43.98:3000/users'; 
 
 const CustomerLoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleLogin = () => {
-    // Handle login logic here
-    console.log('Login attempted with email:', email);
+  const handleLogin = async () => {
+    try {
+      const response = await axios.get(`${API_URL}?email=${email}&password=${password}`);
+
+      if (response.data.length > 0) {
+        navigation.navigate('CustomerDashboard'); // successful login
+      } else {
+        Alert.alert('Login Failed', 'Email or Password is incorrect');
+      }
+    } catch (error) {
+      Alert.alert('Error', 'Failed to connect to server');
+      console.error(error);
+    }
   };
 
   const handleSignup = () => {
-    // Navigate to signup screen
     navigation.navigate('SignUp');
   };
 
@@ -45,11 +57,11 @@ const CustomerLoginScreen = ({ navigation }) => {
           />
         </View>
 
-        <Pressable 
+        <Pressable
           style={({ pressed }) => [
             styles.loginButton,
             pressed && styles.buttonPressed
-          ]} 
+          ]}
           onPress={handleLogin}
         >
           <Text style={styles.loginButtonText}>Login</Text>
