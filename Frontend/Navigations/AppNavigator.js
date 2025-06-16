@@ -17,6 +17,7 @@ const AppNavigation = () => {
         <Stack.Screen name="Biker" component={BikeLoginrScreen}/>
         <Stack.Screen name="Customer" component={CustomerLoginScreen} />
         <Stack.Screen name="SignUp" component={SignupScreen} />
+        <Stack.Screen name="Login" component={CustomerLoginScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
