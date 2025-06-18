@@ -1,14 +1,16 @@
-import React, { useState } from 'react';
-import { View, Text } from 'react-native';
-import AppNavigation from './Navigations/AppNavigator';
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
 import { Provider as PaperProvider } from 'react-native-paper';
+import TabNavigator from './Screens/Customer_Screens/TabNavigator';
 
 const App = () => {
-
-  return(
+  return (
     <PaperProvider>
-    <AppNavigation />
+      <NavigationContainer>
+        <TabNavigator />
+      </NavigationContainer>
     </PaperProvider>
-)
-}
-export default App
+  );
+};
+
+export default App;
