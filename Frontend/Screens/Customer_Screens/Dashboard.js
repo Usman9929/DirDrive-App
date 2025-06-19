@@ -8,8 +8,10 @@ import {
   ScrollView,
   ImageBackground,
 } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 const CustomDashboard = () => {
+  const navigation = useNavigation();
   return (
     <ScrollView style={styles.container}>
       {/* Header */}
@@ -38,8 +40,8 @@ const CustomDashboard = () => {
         style={styles.banner}
         imageStyle={{ borderRadius: 15 }}
       >
-        <Text style={styles.bannerTitle}>First: Reliable Rides</Text>
-        <Text style={styles.bannerSubtitle}>In: Timeregard</Text>
+        <Text style={styles.bannerTitle}>Fast Reliable Rides </Text>
+        <Text style={styles.bannerTitle}>in Timeregara</Text>
         <View style={styles.bannerTextContainer}>
           <Text style={styles.bannerSubtitle}>Book a ride in seconds</Text>
           <Text style={styles.bannerSubtitle}>safe, affordable, and convenient.</Text>
@@ -52,15 +54,17 @@ const CustomDashboard = () => {
       {/* Select a Ride */}
       <Text style={styles.selectRide}>Select a ride</Text>
       <View style={styles.rideOptions}>
-        <TouchableOpacity style={styles.option}>
+        <TouchableOpacity style={styles.option} 
+         onPress={() => navigation.navigate('BookRideScreen')}
+        >
           <View style={styles.iconCircle}>
             <Image source={require('../../assets/icons/bike.png')} 
             style={[styles.optionImage, {tintColor: null}]}
              />
           </View>
-          <Text style={styles.optionText}>Bike</Text>
+          <Text style={styles.optionText}>Book a Ride</Text> 
         </TouchableOpacity>
-        <TouchableOpacity style={styles.option}>
+        <TouchableOpacity style={styles.option} >
           <View style={styles.iconCircle}>
             <Image source={require('../../assets/icons/myrides.png')} 
             style={[styles.optionImage, {tintColor: null}]}
