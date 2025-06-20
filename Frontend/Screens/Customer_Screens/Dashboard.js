@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-const CustomDashboard = () => {
+const CustomerDashboard = () => {
   const navigation = useNavigation();
   return (
     <ScrollView style={styles.container}>
@@ -54,9 +54,7 @@ const CustomDashboard = () => {
       {/* Select a Ride */}
       <Text style={styles.selectRide}>Select a ride</Text>
       <View style={styles.rideOptions}>
-        <TouchableOpacity style={styles.option} 
-         onPress={() => navigation.navigate('BookRideScreen')}
-        >
+        <TouchableOpacity style={styles.option} onPress={() => navigation.navigate('BookRide')}> 
           <View style={styles.iconCircle}>
             <Image source={require('../../assets/icons/bike.png')} 
             style={[styles.optionImage, {tintColor: null}]}
@@ -64,7 +62,7 @@ const CustomDashboard = () => {
           </View>
           <Text style={styles.optionText}>Book a Ride</Text> 
         </TouchableOpacity>
-        <TouchableOpacity style={styles.option} >
+        <TouchableOpacity style={styles.option}  onPress={() => navigation.navigate('MyRides')} >
           <View style={styles.iconCircle}>
             <Image source={require('../../assets/icons/myrides.png')} 
             style={[styles.optionImage, {tintColor: null}]}
@@ -72,7 +70,7 @@ const CustomDashboard = () => {
           </View>
           <Text style={styles.optionText}>My Ride</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.option}>
+        <TouchableOpacity style={styles.option} onPress={() => navigation.navigate('SupportCenter')}>
           <View style={styles.iconCircle}>
             <Image source={require('../../assets/icons/support.png')} style={[styles.optionImage, {tintColor: null}]} />
           </View>
@@ -254,4 +252,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CustomDashboard;
+export default CustomerDashboard;

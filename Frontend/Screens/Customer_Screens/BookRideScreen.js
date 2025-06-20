@@ -1,8 +1,52 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Pressable, Image } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Pressable,
+  TextInput,
+  PermissionsAndroid,
+  Platform,
+  Alert
+} from 'react-native';
+import { RNCamera } from 'react-native-camera';
 
 const BookRideScreen = () => {
   const [paymentMethod, setPaymentMethod] = useState('Cash');
+  const [showScanner, setShowScanner] = useState(false);
+  const [hasCameraPermission, setHasCameraPermission] = useState(false);
+
+  const requestCameraPermission = async () => {
+    if (Platform.OS === 'android') {
+      try {
+        const granted = await PermissionsAndroid.request(
+          PermissionsAndroid.PERMISSIONS.CAMERA,
+          {
+            title: 'Camera Permission',
+            message: 'App needs camera access to scan QR codes.',
+            buttonNeutral: 'Ask Me Later',
+            buttonNegative: 'Cancel',
+            buttonPositive: 'OK',
+          },
+        );
+        setHasCameraPermission(granted === PermissionsAndroid.RESULTS.GRANTED);
+        if (granted !== PermissionsAndroid.RESULTS.GRANTED) {
+          Alert.alert('Permission Denied', 'Camera access is needed for QR scanning.');
+        }
+      } catch (err) {
+        console.warn(err);
+      }
+    } else {
+      setHasCameraPermission(true);
+    }
+  };
+
+  const onBarCodeRead = (e) => {
+    setShowScanner(false);
+    Alert.alert('QR Code Scanned', `Data: ${e.data}`);
+
+    // TODO: Call your payment request API with e.data if needed
+  };
 
   const PaymentButton = ({ title }) => (
     <Pressable
@@ -23,6 +67,11 @@ const BookRideScreen = () => {
     </Pressable>
   );
 
+  const handleScanPress = async () => {
+    await requestCameraPermission();
+    if (hasCameraPermission) setShowScanner(true);
+  };
+
   return (
     <View style={styles.container}>
       <Text style={styles.header}>🏍️ Book Bike Ride</Text>
@@ -31,11 +80,19 @@ const BookRideScreen = () => {
       <View style={styles.inputBox}>
         <View style={styles.inputRow}>
           <Text style={styles.locationIcon}>📍</Text>
-          <Text style={styles.inputText}>Enter pickup location</Text>
+          <TextInput
+            style={styles.inputText}
+            placeholder="Enter pickup location"
+            placeholderTextColor="#888"
+          />
         </View>
         <View style={styles.inputRow}>
           <Text style={styles.locationIcon}>🛑</Text>
-          <Text style={styles.inputText}>Enter drop-off location</Text>
+          <TextInput
+            style={styles.inputText}
+            placeholder="Enter drop-off location"
+            placeholderTextColor="#888"
+          />
         </View>
       </View>
 
@@ -55,6 +112,35 @@ const BookRideScreen = () => {
         <PaymentButton title="EasyPaisa" />
       </View>
 
+      {paymentMethod === 'JazzCash' && (
+        <View style={styles.card}>
+          <Text style={styles.serviceText}>JazzCash Account: 0300-1234567</Text>
+          <Pressable style={styles.scanButton} onPress={handleScanPress}>
+            <Text style={styles.scanButtonText}>📷 Scan QR Code</Text>
+          </Pressable>
+        </View>
+      )}
+
+      {paymentMethod === 'EasyPaisa' && (
+        <View style={styles.card}>
+          <Text style={styles.serviceText}>EasyPaisa Account: 0345-9876543</Text>
+          <Pressable style={styles.scanButton} onPress={handleScanPress}>
+            <Text style={styles.scanButtonText}>📷 Scan QR Code</Text>
+          </Pressable>
+        </View>
+      )}
+
+      {/* QR Scanner */}
+      {showScanner && hasCameraPermission && (
+        <View style={styles.scannerBox}>
+          <RNCamera
+            style={styles.camera}
+            onBarCodeRead={onBarCodeRead}
+            captureAudio={false}
+          />
+        </View>
+      )}
+
       {/* Fare Estimate */}
       <View style={styles.card}>
         <Text style={styles.sectionTitle}>Fare Estimate</Text>
@@ -67,12 +153,8 @@ const BookRideScreen = () => {
           <Text style={styles.fareValue}>Rs. 50</Text>
         </View>
         <View style={styles.fareRow}>
-          <Text style={[styles.fareLabel, { fontWeight: 'bold' }]}>
-            Estimated Total
-          </Text>
-          <Text style={[styles.fareValue, { fontWeight: 'bold' }]}>
-            Rs. 100
-          </Text>
+          <Text style={[styles.fareLabel, { fontWeight: 'bold' }]}>Estimated Total</Text>
+          <Text style={[styles.fareValue, { fontWeight: 'bold' }]}>Rs. 100</Text>
         </View>
       </View>
 
@@ -113,6 +195,7 @@ const styles = StyleSheet.create({
   inputText: {
     fontSize: 15,
     color: '#666',
+    flex: 1,
   },
   card: {
     backgroundColor: '#fff',
@@ -182,6 +265,27 @@ const styles = StyleSheet.create({
     color: '#5c6bc0',
     fontWeight: 'bold',
     fontSize: 16,
+  },
+  scanButton: {
+    marginTop: 10,
+    backgroundColor: '#f2f2f2',
+    paddingVertical: 10,
+    borderRadius: 6,
+    alignItems: 'center',
+  },
+  scanButtonText: {
+    color: '#333',
+    fontWeight: '600',
+  },
+  scannerBox: {
+    flex: 1,
+    height: 300,
+    marginBottom: 20,
+    borderRadius: 10,
+    overflow: 'hidden',
+  },
+  camera: {
+    flex: 1,
   },
 });
 

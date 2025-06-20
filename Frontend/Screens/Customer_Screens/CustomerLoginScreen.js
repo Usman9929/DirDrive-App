@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, StyleSheet, Pressable, ImageBackground, TouchableOpacity, Alert } from 'react-native';
 import axios from 'axios';
+import { useNavigation } from '@react-navigation/native';
 
 const API_URL = 'http://192.168.43.98:3000/users'; 
 
-const CustomerLoginScreen = ({ navigation }) => {
+const CustomerLoginScreen = () => {
+  const navigation = useNavigation();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -13,7 +15,7 @@ const CustomerLoginScreen = ({ navigation }) => {
       const response = await axios.get(`${API_URL}?email=${email}&password=${password}`);
 
       if (response.data.length > 0) {
-        navigation.navigate('CustomerDashboard'); // successful login
+        navigation.navigate('Tabs'); // successful login
       } else {
         Alert.alert('Login Failed', 'Email or Password is incorrect');
       }
