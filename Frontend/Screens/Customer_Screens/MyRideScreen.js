@@ -1,7 +1,9 @@
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView, Pressable } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 const MyRidesScreen = () => {
+  const navigation = useNavigation();
   return (
     <ScrollView style={styles.container}>
       {/* Header */}
@@ -17,7 +19,7 @@ const MyRidesScreen = () => {
         <Text><Text style={styles.label}>Status:</Text> <Text style={styles.status}>On the way</Text></Text>
 
         <View style={styles.buttonRow}>
-          <Pressable style={styles.trackButton}>
+          <Pressable style={styles.trackButton} onPress={() => navigation.navigate('TrackRide')}>
             <Text style={styles.trackText}>Track Ride</Text>
           </Pressable>
           <Pressable style={styles.cancelButton}>

@@ -10,8 +10,9 @@ import BikerDashboard from '../Screens/Biker_Screens/Dashboard';
 import BookRideScreen from '../Screens/Customer_Screens/BookRideScreen';
 import MyRidesScreen from '../Screens/Customer_Screens/MyRideScreen';
 import TabNavigator from '../Screens/Customer_Screens/TabNavigator';
-import SupportCenter from '../Screens/Customer_Screens/Support';
 import ScannerScreen from '../Screens/Customer_Screens/Scanner';
+import TrackRideScreen from '../Screens/Customer_Screens/TrackRideScreen';
+import SupportCenterScreen from '../Screens/Customer_Screens/SupportCenterScreen';
 
 const Stack = createStackNavigator();
 
@@ -28,8 +29,9 @@ const AppNavigation = () => {
         <Stack.Screen name="BikerDashboard" component={BikerDashboard} />
         <Stack.Screen name="BookRide" component={BookRideScreen} />
         <Stack.Screen name="MyRides" component={MyRidesScreen} />
-        <Stack.Screen name="SupportCenter" component={SupportCenter} />
         <Stack.Screen name="Scanner" component={ScannerScreen} />
+        <Stack.Screen name="TrackRide" component={TrackRideScreen} />
+        <Stack.Screen name="SupportCenter" component={SupportCenterScreen} />
       </Stack.Navigator>
 
   );

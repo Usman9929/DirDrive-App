@@ -119,5 +119,13 @@
       "cnic": "98765-4321098-7",
       "password": "securepass"
     }
+  ],
+  "supportIssues": [
+    {
+      "id": "fce7",
+      "issueType": "Payment Problem",
+      "description": "Jazzcash not sending the code.",
+      "createdAt": "2025-06-22T20:14:51.558Z"
+    }
   ]
 }
