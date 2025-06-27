@@ -1,34 +1,29 @@
 import React from 'react';
-import { View, Text, StyleSheet, Pressable, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, ScrollView } from 'react-native';
 
 const EarningsScreen = () => {
   return (
     <ScrollView contentContainerStyle={styles.container}>
       {/* Header */}
-      <View style={styles.headerRow}>
-        <Text style={styles.title}>Your Earnings</Text>
-        <Pressable style={styles.withdrawBtn}>
-          <Text style={styles.withdrawText}>Withdraw</Text>
-        </Pressable>
-      </View>
+      <Text style={styles.title}>Your Earnings</Text>
 
-      {/* Earnings Boxes */}
-      <View style={styles.cardRow}>
+      {/* Earnings Cards */}
+      <View style={styles.cardGrid}>
         <View style={[styles.card, { backgroundColor: '#e6f0fb' }]}>
           <Text style={styles.cardLabel}>Today</Text>
-          <Text style={styles.cardValue}>Rs.1500</Text>
+          <Text style={styles.cardValue}>Rs. 1500</Text>
         </View>
         <View style={[styles.card, { backgroundColor: '#e5f5eb' }]}>
           <Text style={styles.cardLabel}>This Week</Text>
-          <Text style={styles.cardValue}>Rs.4500</Text>
+          <Text style={styles.cardValue}>Rs. 4500</Text>
+        </View>
+        <View style={[styles.card, { backgroundColor: '#fff6dc' }]}>
+          <Text style={styles.cardLabel}>This Month</Text>
+          <Text style={styles.cardValue}>Rs. 30000</Text>
         </View>
       </View>
-      <View style={[styles.card, { backgroundColor: '#fff6dc' }]}>
-        <Text style={styles.cardLabel}>This Month</Text>
-        <Text style={styles.cardValue}>Rs.30000</Text>
-      </View>
 
-      {/* Stats */}
+      {/* Summary Stats */}
       <View style={styles.statsBox}>
         <View style={styles.statItem}>
           <Text style={styles.statValue}>47</Text>
@@ -53,50 +48,41 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     flexGrow: 1,
   },
-  headerRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: 16,
-  },
   title: {
-    fontSize: 20,
+    fontSize: 22,
     fontWeight: 'bold',
+    marginBottom: 20,
   },
-  withdrawBtn: {
-    paddingVertical: 6,
-    paddingHorizontal: 12,
-  },
-  withdrawText: {
-    color: '#007bff',
-    fontWeight: 'bold',
-  },
-  cardRow: {
+  cardGrid: {
     flexDirection: 'row',
+    flexWrap: 'wrap',
     justifyContent: 'space-between',
-    marginBottom: 12,
+    gap: 12,
+    marginBottom: 30,
   },
   card: {
-    flex: 1,
-    padding: 16,
+    width: '48%',
+    paddingVertical: 20,
+    paddingHorizontal: 16,
     borderRadius: 10,
-    marginRight: 10,
+    marginBottom: 12,
   },
   cardLabel: {
-    color: '#333',
-    marginBottom: 5,
+    fontSize: 14,
+    color: '#555',
+    marginBottom: 6,
   },
   cardValue: {
     fontSize: 18,
     fontWeight: 'bold',
+    color: '#000',
   },
   statsBox: {
-    marginTop: 20,
-    backgroundColor: '#f2f2f2',
-    borderRadius: 10,
-    paddingVertical: 20,
     flexDirection: 'row',
     justifyContent: 'space-around',
+    paddingVertical: 20,
+    backgroundColor: '#f2f2f2',
+    borderRadius: 10,
   },
   statItem: {
     alignItems: 'center',

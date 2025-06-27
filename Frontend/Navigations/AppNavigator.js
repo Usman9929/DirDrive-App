@@ -19,6 +19,7 @@ import EarningsScreen from '../Screens/Biker_Screens/EarningScreen';
 import BikerProfile from '../Screens/Biker_Screens/BikerProfile';
 import BikerTabNavigator from '../Screens/Biker_Screens/BikerTabNavigator';
 import ViewDetailScreen from '../Screens/Biker_Screens/ViewDetailScreen';
+import AccountSettingsScreen from '../Screens/Biker_Screens/AccountSettingsScreen';
 import { View } from 'react-native';
 
 const Stack = createStackNavigator();
@@ -45,6 +46,8 @@ const AppNavigation = () => {
         <Stack.Screen name="Earnings" component={EarningsScreen} />
         <Stack.Screen name="BikerProfile" component={BikerProfile} />
         <Stack.Screen name="ViewDetailScreen" component={ViewDetailScreen} />
+        <Stack.Screen name="AccountScreen" component={AccountSettingsScreen} />
+
       </Stack.Navigator>
 
   );
