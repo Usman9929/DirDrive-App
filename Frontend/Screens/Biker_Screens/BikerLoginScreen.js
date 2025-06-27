@@ -14,7 +14,7 @@ const BikerLoginScreen = ({ navigation }) => {
       
       if (response.data.length > 0) {
         // Login successful
-        navigation.navigate('BikerDashboard'); // Replace with your dashboard screen
+        navigation.navigate('BikerBottomTabs'); // Replace with your dashboard screen
       } else {
         Alert.alert('Login Failed', 'CNIC or Password is incorrect');
       }

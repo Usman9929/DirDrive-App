@@ -14,13 +14,20 @@ import ScannerScreen from '../Screens/Customer_Screens/Scanner';
 import TrackRideScreen from '../Screens/Customer_Screens/TrackRideScreen';
 import SupportCenterScreen from '../Screens/Customer_Screens/SupportCenterScreen';
 import RateRideScreen from '../Screens/Customer_Screens/RateRideScreen';
+import HistoryScreen from '../Screens/Biker_Screens/HistoryScreen';
+import EarningsScreen from '../Screens/Biker_Screens/EarningScreen';
+import BikerProfile from '../Screens/Biker_Screens/BikerProfile';
+import BikerTabNavigator from '../Screens/Biker_Screens/BikerTabNavigator';
+import ViewDetailScreen from '../Screens/Biker_Screens/ViewDetailScreen';
+import { View } from 'react-native';
 
 const Stack = createStackNavigator();
 
 const AppNavigation = () => {
   return (
       <Stack.Navigator initialRouteName="Welcome" screenOptions={{ headerShown: false }} > 
-        <Stack.Screen name="Tabs" component={TabNavigator} />
+        <Stack.Screen name="CustomerBottomTabs" component={TabNavigator} />
+        <Stack.Screen name="BikerBottomTabs" component={BikerTabNavigator} />
         <Stack.Screen name="Welcome" component={WelcomeScreen} options={{ headerShown: false }} screenOptions={{ headerShown: false }}/>
         <Stack.Screen name="Biker" component={BikeLoginrScreen}/>
         <Stack.Screen name="Customer" component={CustomerLoginScreen} />
@@ -34,6 +41,10 @@ const AppNavigation = () => {
         <Stack.Screen name="TrackRide" component={TrackRideScreen} />
         <Stack.Screen name="SupportCenter" component={SupportCenterScreen} />
         <Stack.Screen name="RateRides" component={RateRideScreen} />
+        <Stack.Screen name="History" component={HistoryScreen} />
+        <Stack.Screen name="Earnings" component={EarningsScreen} />
+        <Stack.Screen name="BikerProfile" component={BikerProfile} />
+        <Stack.Screen name="ViewDetailScreen" component={ViewDetailScreen} />
       </Stack.Navigator>
 
   );

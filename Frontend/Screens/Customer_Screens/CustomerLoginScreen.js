@@ -15,7 +15,7 @@ const CustomerLoginScreen = () => {
       const response = await axios.get(`${API_URL}?email=${email}&password=${password}`);
 
       if (response.data.length > 0) {
-        navigation.navigate('Tabs'); // successful login
+        navigation.navigate('CustomerBottomTabs'); // successful login
       } else {
         Alert.alert('Login Failed', 'Email or Password is incorrect');
       }
