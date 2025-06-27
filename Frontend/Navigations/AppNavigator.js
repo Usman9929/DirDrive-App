@@ -13,6 +13,7 @@ import TabNavigator from '../Screens/Customer_Screens/TabNavigator';
 import ScannerScreen from '../Screens/Customer_Screens/Scanner';
 import TrackRideScreen from '../Screens/Customer_Screens/TrackRideScreen';
 import SupportCenterScreen from '../Screens/Customer_Screens/SupportCenterScreen';
+import RateRideScreen from '../Screens/Customer_Screens/RateRideScreen';
 
 const Stack = createStackNavigator();
 
@@ -32,6 +33,7 @@ const AppNavigation = () => {
         <Stack.Screen name="Scanner" component={ScannerScreen} />
         <Stack.Screen name="TrackRide" component={TrackRideScreen} />
         <Stack.Screen name="SupportCenter" component={SupportCenterScreen} />
+        <Stack.Screen name="RateRides" component={RateRideScreen} />
       </Stack.Navigator>
 
   );

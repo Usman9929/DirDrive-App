@@ -76,7 +76,7 @@ const CustomerDashboard = () => {
           </View>
           <Text style={styles.optionText}>Support</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.option}>
+        <TouchableOpacity style={styles.option} onPress={() => navigation.navigate('RateRides')}>
           <View style={styles.iconCircle}>
             <Image source={require('../../assets/icons/rate.png')} style={[styles.optionImage, {tintColor: null}]} />
           </View>
